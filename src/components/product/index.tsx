@@ -9,9 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import type { Product } from "@/lib/types";
-import { type ProductsState, useProductsStore } from "@/lib/store";
+import { type ProductsState } from "@/lib/store";
+import { Count, Decrement, Increment } from "./counter";
 
 const Product: FC<{
   title: string;
@@ -19,23 +19,20 @@ const Product: FC<{
   description: string;
   id: keyof ProductsState;
 }> = ({ price, title, description, id }) => {
-  const count = useProductsStore((state) => state[id].count);
-  const increment = useProductsStore((state) => state.increment);
-  const handleIncrement = () => {
-    increment(id);
-  };
-
   return (
     <Card className="max-w-screen-sm">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
-        {!!description && <CardDescription>{description}</CardDescription>}
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent></CardContent>
       <CardFooter className="flex justify-between">
-        <Button>-</Button>
-        <p>{count}</p>
-        <Button onClick={handleIncrement}>+</Button>
+        <span>{price}</span>
+        <div className="flex items-center gap-x-2">
+          <Decrement id={id} />
+          <Count id={id} />
+          <Increment id={id} />
+        </div>
       </CardFooter>
     </Card>
   );

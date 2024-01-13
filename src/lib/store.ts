@@ -31,6 +31,7 @@ export const products = {
 export type ProductsState = typeof products;
 type Action = {
   increment: (name: keyof ProductsState) => void;
+  decrement: (name: keyof ProductsState) => void;
 };
 
 export const useProductsStore = create<ProductsState & Action>()((set) => ({
@@ -38,6 +39,11 @@ export const useProductsStore = create<ProductsState & Action>()((set) => ({
   increment: (productId) => {
     set((state) => ({
       [productId]: { ...state[productId], count: state[productId].count + 1 },
+    }));
+  },
+  decrement: (productId) => {
+    set((state) => ({
+      [productId]: { ...state[productId], count: state[productId].count - 1 },
     }));
   },
 }));
