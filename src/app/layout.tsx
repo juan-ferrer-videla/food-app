@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { ToggleTheme } from "@/components/toggle-theme";
 
-export const fontSans = FontSans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -22,9 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body
-        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
-      >
+      <body className={cn("min-h-screen antialiased", inter.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

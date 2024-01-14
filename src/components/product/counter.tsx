@@ -2,22 +2,24 @@
 
 import React, { FC } from "react";
 import { Button } from "../ui/button";
-import { ProductsState, useProductsStore } from "@/lib/store";
+import { useStore } from "@/lib/store";
 
 const Increment: FC<{
-  id: keyof ProductsState;
+  id: string;
 }> = ({ id }) => {
-  const increment = useProductsStore((state) => state.increment);
+  const increment = useStore((state) => state.increment);
   const handleIncrement = () => increment(id);
 
   return <Button onClick={handleIncrement}>+</Button>;
 };
 
 const Decrement: FC<{
-  id: keyof ProductsState;
+  id: string;
 }> = ({ id }) => {
-  const count = useProductsStore((state) => state[id].count);
-  const decrement = useProductsStore((state) => state.decrement);
+  const count = useStore(
+    (state) => state.products.find((product) => id === product.id)?.count,
+  );
+  const decrement = useStore((state) => state.decrement);
   const handleDecrement = () => decrement(id);
 
   return (
@@ -28,9 +30,11 @@ const Decrement: FC<{
 };
 
 const Count: FC<{
-  id: keyof ProductsState;
+  id: string;
 }> = ({ id }) => {
-  const count = useProductsStore((state) => state[id].count);
+  const count = useStore(
+    (state) => state.products.find((product) => id === product.id)?.count,
+  );
   return <div className="px-2 font-semibold">{count}</div>;
 };
 

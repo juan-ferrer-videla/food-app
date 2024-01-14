@@ -1,6 +1,1 @@
-export type Product = {
-  title: string;
-  description: string;
-  price: number;
-  count: number;
-};
+export type ProductGroup = "Plato principal" | "Entrada";
