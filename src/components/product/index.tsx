@@ -9,12 +9,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TProduct } from "@/lib/store";
+import { TProduct } from "@/lib/data";
 import { Count, Decrement, Increment } from "./counter";
+import { cn } from "@/lib/utils";
 
-const Product: FC<TProduct> = ({ price, title, description, id }) => {
+const Product: FC<TProduct & { className?: string }> = ({
+  price,
+  title,
+  description,
+  id,
+  className,
+}) => {
   return (
-    <Card className="max-w-screen-sm">
+    <Card className={cn("max-w-screen-sm", className)}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
