@@ -35,7 +35,9 @@ const Count: FC<{
   const count = useStore(
     (state) => state.products.find((product) => id === product.id)?.count,
   );
-  return <div className="px-2 font-semibold">{count}</div>;
+  return (
+    <div className="min-w-[3ch] px-1 text-center font-semibold">{count}</div>
+  );
 };
 
 export { Count, Increment, Decrement };

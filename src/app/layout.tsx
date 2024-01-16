@@ -28,7 +28,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <header className="container py-2">
+          <header className="container flex items-center justify-between py-2">
+            <h1>Cafe Bombal</h1>
             <ToggleTheme />
           </header>
           <main className="container">{children}</main>
